@@ -53,29 +53,38 @@ public class servletGrafica extends HttpServlet {
 
             ArrayList<Integer> alturaPuntos = new ArrayList<Integer>();
             ArrayList<XYSeries> variable = new ArrayList<XYSeries>();
-           
-Random rand = new Random();
+
+            Random rand = new Random();
             for (int i = 0; i < 10; i++) {
-                alturaPuntos.add(rand.nextInt(50)+1);
+                alturaPuntos.add(rand.nextInt(50) + 1);
             }
-            System.out.println("Arreglo" + alturaPuntos);
+
             XYSeriesCollection dataset = new XYSeriesCollection();
             float inicio_serie = 0.0f;
             XYSeries p1;
-            for (int i = 0; i < 10 ; i++) {
-                p1 = new XYSeries("a"+i);
-                //p1.add(inicio_serie, altura_punto);
+            for (int i = 0; i < 10; i++) {
+                p1 = new XYSeries("a" + i);
                 p1.add(inicio_serie, alturaPuntos.get(i));
                 p1.add(i, 0.0);
                 variable.add(p1);
-                inicio_serie=inicio_serie+1.0f;
+                inicio_serie = inicio_serie + 1.0f;
             }
-            System.out.println(variable);
-            System.out.println("tam:"+variable.size());
-            for(int i=0; i<10; i++){
+            for (int i = 0; i < 10; i++) {
                 dataset.addSeries(variable.get(i));
             }
-           
+            JFreeChart xylineChart = ChartFactory.createXYLineChart("Grafica XY", "n", "x(n)", dataset, PlotOrientation.VERTICAL, true, true, false);
+            XYPlot plot = xylineChart.getXYPlot();
+            XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+            renderer.setSeriesPaint(0, Color.RED);
+            renderer.setSeriesStroke(0, new BasicStroke(4.0f));
+            plot.setRenderer(renderer);
+            ChartPanel panel = new ChartPanel(xylineChart);
+            JFrame ventana = new JFrame("Grafica");
+            ventana.setVisible(true);
+            ventana.setSize(800, 600);
+            ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            ventana.add(panel);
+
             //Gŕafica XY
             /*XYSeries p1 = new XYSeries("a1");
             p1.add(0.0, 1.0);
@@ -97,21 +106,20 @@ Random rand = new Random();
             dataset.addSeries(p1);
             dataset.addSeries(p2);
             dataset.addSeries(p3);
-            dataset.addSeries(p4);*/
-
-            JFreeChart xylineChart = ChartFactory.createXYLineChart("Grafica XY", "Transporte", "Puntuacion", dataset, PlotOrientation.VERTICAL, true, true, false);
+            dataset.addSeries(p4);
+            JFreeChart xylineChart = ChartFactory.createXYLineChart("Grafica XY", "n", "x(n)", dataset, PlotOrientation.VERTICAL, true, true, false);
 
             XYPlot plot = xylineChart.getXYPlot();
 
             XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
             renderer.setSeriesPaint(0, Color.RED);
-            /*renderer.setSeriesPaint(1, Color.GREEN);
+            renderer.setSeriesPaint(1, Color.GREEN);
             renderer.setSeriesPaint(2, Color.YELLOW);
-            renderer.setSeriesPaint(3, Color.BLACK);*/
+            renderer.setSeriesPaint(3, Color.BLACK);
             renderer.setSeriesStroke(0, new BasicStroke(4.0f));
-           /* renderer.setSeriesStroke(1, new BasicStroke(3.0f));
+            renderer.setSeriesStroke(1, new BasicStroke(3.0f));
             renderer.setSeriesStroke(2, new BasicStroke(2.0f));
-            renderer.setSeriesStroke(3, new BasicStroke(1.0f));*/
+            renderer.setSeriesStroke(3, new BasicStroke(1.0f));
             plot.setRenderer(renderer);
 
             ChartPanel panel = new ChartPanel(xylineChart);
@@ -121,9 +129,9 @@ Random rand = new Random();
             ventana.setSize(800, 600);
             ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            ventana.add(panel);
+            ventana.add(panel);*/
 
-            /* Gráfica de pastel
+ /* Gráfica de pastel
             DefaultPieDataset dataset = new DefaultPieDataset();
             dataset.setValue("Iphone", new Double(20));
             dataset.setValue("Samsung", new Double(20));
@@ -136,7 +144,7 @@ Random rand = new Random();
             JFrame ventana = new JFrame("");
             ventana.setVisible(true);
             ventana.setSize(800,600);
-            
+                
             ventana.add(panel);*/
         }
     }
