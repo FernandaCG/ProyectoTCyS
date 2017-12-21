@@ -9,7 +9,6 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.servlet.ServletException;
@@ -18,14 +17,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JFrame;
-import static javax.swing.UIManager.get;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -72,7 +69,7 @@ public class servletGrafica extends HttpServlet {
             for (int i = 0; i < 10; i++) {
                 dataset.addSeries(variable.get(i));
             }
-            JFreeChart xylineChart = ChartFactory.createXYLineChart("Grafica XY", "n", "x(n)", dataset, PlotOrientation.VERTICAL, true, true, false);
+            JFreeChart xylineChart = ChartFactory.createXYLineChart("Grafica X(n)", "n", "x(n)", dataset, PlotOrientation.VERTICAL, true, true, false);
             XYPlot plot = xylineChart.getXYPlot();
             XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
             renderer.setSeriesPaint(0, Color.RED);
